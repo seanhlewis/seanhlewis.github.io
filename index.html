@@ -103,18 +103,18 @@
     <section id="contact" style="--bs-body-bg: #04b8d0;background: var(--bs-info);">
         <div class="container"><h2 class="text-uppercase text-center mb-0" style="color:#ffffff">Contact Me</h2><hr class="star-dark mb-5" />
             <div class="row">
-                <div class="col-lg-8 mx-auto"><form action="/404.html" id="contactForm" name="sentMessage" novalidate="novalidate">
+                <div class="col-lg-8 mx-auto"><form action="https://formspree.io/f/mzbowwra" method="POST" id="contactForm" name="sentMessage" novalidate="novalidate">
     <div class="control-group">
-        <div class="mb-0 form-floating controls pb-2"><input id="name" class="form-control" type="text" required placeholder="Name" /><label class="form-label">Name</label><small class="form-text text-danger help-block"></small></div>
+        <div class="mb-0 form-floating controls pb-2"><input id="name" name="name" class="form-control" type="text" required placeholder="Name" /><label class="form-label">Name</label><small class="form-text text-danger help-block"></small></div>
     </div>
     <div class="control-group">
-        <div class="mb-0 form-floating controls pb-2"><input id="email" class="form-control" type="email" required placeholder="Email Address" /><label class="form-label">Email Address</label><small class="form-text text-danger help-block"></small></div>
+        <div class="mb-0 form-floating controls pb-2"><input id="email" name="email" class="form-control" type="email" required placeholder="Email Address" /><label class="form-label">Email Address</label><small class="form-text text-danger help-block"></small></div>
     </div>
     <div class="control-group">
-        <div class="mb-0 form-floating controls pb-2"><input id="phone" class="form-control" type="tel" required placeholder="Phone Number" /><label class="form-label">Phone Number</label><small class="form-text text-danger help-block"></small></div>
+        <div class="mb-0 form-floating controls pb-2"><input id="phone" name="phone" class="form-control" type="tel" required placeholder="Phone Number" /><label class="form-label">Phone Number</label><small class="form-text text-danger help-block"></small></div>
     </div>
     <div class="control-group">
-        <div class="mb-5 form-floating controls pb-2"><textarea id="message" class="form-control" required placeholder="Message" style="height: 150px;"></textarea><label class="form-label">Message</label><small class="form-text text-danger help-block"></small></div>
+        <div class="mb-5 form-floating controls pb-2"><textarea id="message" name="message" class="form-control" required placeholder="Message" style="height: 150px;"></textarea><label class="form-label">Message</label><small class="form-text text-danger help-block"></small></div>
     </div>
     <div id="success"></div>
     <div><button id="sendMessageButton" class="btn btn-primary btn-xl" type="submit">Send</button></div>

@@ -26,9 +26,7 @@
         <meta name="next-head-count" content="21" />
         <link rel="preload" href="next/static/css/640dfc6774498a21.css" as="style" />
         <link rel="stylesheet" href="next/static/css/640dfc6774498a21.css" data-n-g="" />
-        <!--import custom.css from next/static/css folder-->
         <link rel="stylesheet" href="next/static/css/custom.css" data-n-g="" />
-        <!--set favicon to images/favicon/favicon.ico-->
         <link rel="shortcut icon" href="images/favicon/favicon.ico" />
         <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico" />
 
@@ -333,50 +331,31 @@
     <script>
 
         var blog_opened = false;
-        //get the mainpage by id
         var mainpage = document.getElementById("mainpage");
-        //get the blogpage by id
         var blogpage = document.getElementById("blogpage");
-        //change mainpage margin-right to 100%
-        //mainpage.style.marginRight = "100%";
-        //console.log if blogpage exists
-        console.log("X");
         if (blogpage) {
-            console.log("blogpage exists");
         }
-        console.log("Y");
 
-        //make a function called HidePost
         function HidePost() {
-
             blogparent = document.getElementById("blogparent");
             blogparent.style.display = "none";
-
-            console.log("hiding the post")
             blogpage = document.getElementById("blogpage");
             
-            //if mainpage is hidden, animate it to show
             if (mainpage.style.display == "none") {
                 mainpage.animate([
-                    // keyframes
                     { opacity: 0 },
                     { opacity: 1 }
                 ], {
-                    // timing options
                     duration: 500,
                     iterations: 1
                 });
                 mainpage.style.display = "block";
                 mainpage.style.opacity = "1";
 
-                //set scroll to prevscroll
                 window.scrollTo(0, prevscroll);
 
             }
             else {
-            
-
-            //animate mainpage right from 40% to 0% over 0.5 seconds
             mainpage.animate([
                 { right: "40%" },
                 { right: "0%" }
@@ -385,7 +364,6 @@
                 iterations: 1
             }).easing = "ease-in-out-cubic";
 
-            //animate blogpage from -193% to -200% over 0.5 seconds
             blogpage.animate([
                 { right: "-193%", opacity: 1},
                 { right: "-200%", opacity: 0}
@@ -399,70 +377,39 @@
             mainpage.style.right = "0%";
             blog_opened = false;
 
-            console.log("Animation finished");
-
-        
         }
 
         var prevevent = null;
         var prevscroll = 0;
-        //make a function called ReadPost
         function ReadPost(event) {
-            //set blogparent to display block
             blogparent = document.getElementById("blogparent");
             blogparent.style.display = "block";
-            //if mobile view, delete mainpage but make sure blogpage doesn't get deleted
             if (window.innerWidth < 768) {
                 prevevent = null
-                //save scroll position
                 prevscroll = window.scrollY;
                 mainpage.style.display = "none";
                 mainpage.style.opacity = "0";
-                //if another blogpage exists, delete it
                 if (document.getElementById("blogpage")) {
                     document.getElementById("blogpage").remove();
                 }
 
-                
-            
-            //if blogpage doesn't exist, create it with the following attributes:
-            //var newelement = document.createElement("div");
-            //newelement.setAttribute("id", "blogpage");
-            //set the class attribute to static flex flex-col justify-between w-full p-24 sm:p-32 md:max-w-496 md:fixed md:h-screen lg:py-88 lg:pl-88 md:pr-72 lg:pr-0
-            //newelement.setAttribute("class", "static flex flex-col justify-between w-full p-24 sm:p-32 md:max-w-496 md:fixed md:h-screen lg:py-88 lg:pl-88 md:pr-72 lg:pr-0");
-            //set the style attribute to position: absolute; width: 10050px; right: -50%; display: flex; max-width: 744px;
-            //newelement.setAttribute("style", "position: relative; width: 744px; right: -200%; display: flex; max-width: 744px; opacity: 0;");
-
-
             var newelement = document.createElement("div");
             newelement.setAttribute("id", "blogpage");
             newelement.setAttribute("class", "static flex flex-col justify-between w-full p-24 sm:p-32 md:max-w-496 md:fixed md:h-screen lg:py-88 lg:pl-88 md:pr-72 lg:pr-0");
-            //newelement.setAttribute("style", "position: relative; width: 744px; right: -200%; display: flex; max-width: 744px; opacity: 0;");
-            //set the page innerHTML to the newelement
             document.body.appendChild(newelement);
             newelement.innerHTML = '<div class="flex flex-col"><div><h1 id="blogtitle" class="text-2xl font-bold leading-tight lg:text-4xl lg:leading-none text-zenith">Delivering Excellent UI/UX Experience</h1><h2 style="margin-bottom: 50px;" id="blogcategory" class="mt-16 sm:text-lg text-[20px] font-semibold leading-tight text-sunrise">Dev Notes - September 13, 2022</h2><div style="color:grey;" id="blogtext" class="leading-loose"><p class="mt-32">lorem ipsum</p></div><a onclick="HidePost()" class="arrow left" target="" style="cursor: pointer; position: absolute; top: 5%; left: 90%;"></a></div></div>';
             blog_opened = true;
-            //scroll the page to the top
             window.scrollTo(0, 0);
         }
-
-
-
             if (!blog_opened) {
             blog_opened = true;
-            console.log("AAAAAAAAAAAAAAAAAAAAAAA")
-            console.log(event);
-            //animate mainpage and blogpage right from 0% to 50%
-            //del width property
             blogpage = document.getElementById("blogpage");
-            console.log("READING THE POST");
             mainpage.animate([
                 { right: "0%" },
                 { right: "40%" }
             ], {
                 duration: 500,
                 iterations: 1
-                //set easing to easeinoutcubic
             }).easing = "ease-in-out-cubic";
             blogpage.animate([
                 { right: "-200%", opacity: 0},
@@ -470,34 +417,25 @@
             ], {
                 duration: 500,
                 iterations: 1
-                //set easing to easeinoutcubic
             }).easing = "ease-in-out-cubic";
             blogpage.style.right = "-193%"
             blogpage.style.opacity = "1";
-            //set mainpage right equal to 40%
             mainpage.style.right = "40%";
-            console.log("ANIMATION FINISHED");
         }
         else if  (prevevent == event){
-            //do nothing since the same post is already open
         }
         else {
             blogpage = document.getElementById("blogpage");
-            console.log("READING THE TSOP");
             blogpage.animate([
                 { opacity: 1},
                 { opacity: 0}
             ], {
                 duration: 500,
                 iterations: 1
-                //set easing to easeinoutcubic
             }).easing = "ease-in-out-cubic";
             blogpage.style.opacity = "0";
         }
-            //get title of the "Read Post" button's parent's parent's parent's parent's first child
             var title = event.parentElement.parentElement.parentElement.parentElement.firstElementChild.innerHTML;
-            //get the blog data which is stored in a json named "blogs" defined above
-            //get the text of the blog which shares the same title as the button's parent
             var blogsjson = document.getElementById("blogdata").innerHTML;
             var blogs = JSON.parse(blogsjson);
             var blogtext = "";
@@ -508,199 +446,87 @@
                     date = blogs.blogs[i].date;
                 }
             }
-            //set the blogtext to the blogtext
             document.getElementById("blogtext").innerHTML = blogtext;
-            //set the blogtitle to the title
             document.getElementById("blogtitle").innerHTML = title;
-            //set the blogdate to the date
-            //document.getElementById("blogdate").innerHTML = blogs.blogs[i].date;
-            //set the blogcategory to the category
             document.getElementById("blogcategory").innerHTML = date;
-            //console log finished
-            console.log("FINISHED");
 
             if (blog_opened && prevevent != event) {
                 blogpage = document.getElementById("blogpage");
-                console.log("READING THE TSOP IN");
                 blogpage.animate([
                     { opacity: 0},
                     { opacity: 1}
                 ], {
                     duration: 500,
                     iterations: 1
-                    //set easing to easeinoutcubic
                 }).easing = "ease-in-out-cubic";
                 blogpage.style.opacity = "1";
             }
             prevevent = event;
         
         }
-        //call the function ReadPost
-        //ReadPost();
         
-        //append <a href="#" class="arrow left"></a> to mainpage as a child of a class called "leading-loose"
-        console.log("A")
-        //get document by class name leading-loose
-        // var leadingloose = document.getElementsByClassName("leading-loose");
-        // //append <a href="#" class="arrow left"></a> to leadingloose after 1 second
-        // setTimeout(function() {
-        //     console.log("B")
-        //     //create a new element
-        //     var newelement = document.createElement("a");
-        //     //set the href attribute to #
-        //     //newelement.setAttribute("href", "#");
-        //     //set onclick attribute to HidePost()
-        //     newelement.setAttribute("onclick", "HidePost()");
-        //     //set the class attribute to arrow left
-        //     newelement.setAttribute("class", "arrow left");
-        //     //append the new element to leadingloose
-        //     leadingloose[0].appendChild(newelement);
-        // }, 1000);
-        console.log("B")
-
-        //append <div class="static flex flex-col justify-between w-full p-24 sm:p-32 md:max-w-496 md:fixed md:h-screen lg:py-88 lg:pl-88 md:pr-72 lg:pr-0" style="
-        //     position: absolute;
-        //     width: 10050px;
-        //     right: -50%;
-        //     display: flex;
-        //     max-width: 744px;
-        // "><div class="flex flex-col"><div><h1 class="text-2xl font-bold leading-tight lg:text-4xl lg:leading-none text-zenith">Delivering Excellent UI/UX Experience</h1><h2 class="mt-16 sm:text-lg text-[20px] font-semibold leading-tight text-sunrise">Dev Notes - September 13, 2022</h2><div class="leading-loose"><p class="mt-32">lorem ipsum</p> <a href="#" class="arrow left" target="" style="cursor: pointer;"></a></div></div></div></div>
-        //below the parent of the element with id "projects"
-       
-
-
-
         function on_page_load() {
-            //console.log("on page loaded")
         
         try {
-            //console.log("inside try")
-        //mobile fix
-        //if mobile, get the first child of the first child of the second child of the parent of blogger1 and set the font size to 40px
-        
+     
         if (window.innerWidth < 768) {
-        //get parent of blogger1
         var blogger1 = document.getElementById("blogger1");
         var blogger1parent = blogger1.parentNode;
-        //get the second child of the parent of blogger1
         var blogger1parent2 = blogger1parent.childNodes[1];
-        //get the first child of the second child of the parent of blogger1
         var blogger1parent2child1 = blogger1parent2.childNodes[0];
-        //get the first child of the first child of the second child of the parent of blogger1
         var blogger1parent2child1child1 = blogger1parent2child1.childNodes[0];
-        //set the font size to 40px
         blogger1parent2child1child1.style.fontSize = "40px";
         }
         
-
-
-        
-        //get the element with id "projects"
         var projects = document.getElementById("projects");
-        //get the parent of the element with id "projects"
         var parent = projects.parentElement;
-        //create a new element
         var newelement = document.createElement("div");
         newelement.setAttribute("id", "blogpage");
-        //set the class attribute to static flex flex-col justify-between w-full p-24 sm:p-32 md:max-w-496 md:fixed md:h-screen lg:py-88 lg:pl-88 md:pr-72 lg:pr-0
         newelement.setAttribute("class", "static flex flex-col justify-between w-full p-24 sm:p-32 md:max-w-496 md:fixed md:h-screen lg:py-88 lg:pl-88 md:pr-72 lg:pr-0");
-        //set the style attribute to position: absolute; width: 10050px; right: -50%; display: flex; max-width: 744px;
         newelement.setAttribute("style", "position: relative; width: 744px; right: -200%; display: flex; max-width: 744px; opacity: 0;");
-        //append the new element below the parent of the element with id "projects"
-        //parent.appendBelow(newelement);
-        //surround the newelement with a position: fixed div
         var newelement2 = document.createElement("div");
         newelement2.setAttribute("id", "blogparent");
         newelement2.setAttribute("style", "position: fixed; display: none;");
         newelement2.appendChild(newelement);
         parent.after(newelement2);
         
-        //append <div class="flex flex-col"><div><h1 class="text-2xl font-bold leading-tight lg:text-4xl lg:leading-none text-zenith">Delivering Excellent UI/UX Experience</h1><h2 class="mt-16 sm:text-lg text-[20px] font-semibold leading-tight text-sunrise">Dev Notes - September 13, 2022</h2><div class="leading-loose"><p class="mt-32">lorem ipsum</p> <a href="#" class="arrow left" target="" style="cursor: pointer;"></a></div></div></div>
-        //to the new element
         newelement.innerHTML = '<div class="flex flex-col"><div><h1 id="blogtitle" class="text-2xl font-bold leading-tight lg:text-4xl lg:leading-none text-zenith">Delivering Excellent UI/UX Experience</h1><h2 style="margin-bottom: 50px;" id="blogcategory" class="mt-16 sm:text-lg text-[20px] font-semibold leading-tight text-sunrise">Dev Notes - September 13, 2022</h2><div id="blogtext" class="leading-loose"><p class="mt-32">lorem ipsum</p></div><a onclick="HidePost()" class="arrow left" target="" style="cursor: pointer;"></a></div></div>';
-        console.log("Appended new element to parent of projects");
        
+        var resume = document.getElementById("resume");
+        var secondchild = resume.children[1];
+        var newelement = document.createElement("a");
+        newelement.setAttribute("href", "https://www.seanhlewis.me/resume/");
+        newelement.setAttribute("class", "flex items-center mt-px text-zenith");
+        newelement.setAttribute("target", "_blank");
+        newelement.setAttribute("rel", "noopener noreferrer");
+        newelement.setAttribute("style", "cursor: pointer;float: right;margin-top: -50px;");
+        newelement.innerHTML = '<span>PDF Version</span><span class="block w-16 p-2 ml-4 text-dawn"><svg fill="none" stroke="currentColor" viewBox="0 0 12 12" aria-hidden="true" class="flex-none mt-2 stroke-current"><path d="M10.976 1.193A.314.314 0 0010.687 1H6.312a.313.313 0 000 .625h3.62L5.467 6.091a.313.313 0 00.443.442l4.466-4.466v3.62a.313.313 0 00.625 0V1.313a.328.328 0 00-.024-.119z"></path><path d="M3.5 1v.625H2.25a.625.625 0 00-.625.625v7.5c0 .345.28.625.625.625h7.5c.345 0 .625-.28.625-.625V8.5H11v1.875c0 .345-.28.625-.625.625h-8.75A.625.625 0 011 10.375v-8.75C1 1.28 1.28 1 1.625 1H3.5z"></path></svg></span>';
 
-        console.log("C")
-        //set timeout 0.1 seconds
+        secondchild.appendChild(newelement);
+    
+        var blogger1 = document.getElementById("blogger1");
+        var flexflexcol = document.getElementsByClassName("flex flex-col");
+        var flexflexcol2 = flexflexcol[1];
+        flexflexcol2.prepend(blogger1);
 
-        
-            //get the element with id "interviews"
-            var resume = document.getElementById("resume");
-            //get the second child of the element with id "interviews"
-            var secondchild = resume.children[1];
-            //make a new element with the following properties: <a class="flex items-center mt-px text-zenith" target="" rel="noopener noreferrer" onclick="ReadPost()" style="cursor: pointer;float: right;margin-top: -50px;"><span>PDF Version</span><span class="block w-16 p-2 ml-4 text-dawn"><svg fill="none" stroke="currentColor" viewBox="0 0 12 12" aria-hidden="true" class="flex-none mt-2 stroke-current"><path d="M10.976 1.193A.314.314 0 0010.687 1H6.312a.313.313 0 000 .625h3.62L5.467 6.091a.313.313 0 00.443.442l4.466-4.466v3.62a.313.313 0 00.625 0V1.313a.328.328 0 00-.024-.119z"></path><path d="M3.5 1v.625H2.25a.625.625 0 00-.625.625v7.5c0 .345.28.625.625.625h7.5c.345 0 .625-.28.625-.625V8.5H11v1.875c0 .345-.28.625-.625.625h-8.75A.625.625 0 011 10.375v-8.75C1 1.28 1.28 1 1.625 1H3.5z"></path></svg></span></a>
-            var newelement = document.createElement("a");
-            newelement.setAttribute("href", "https://www.seanhlewis.me/resume/");
-            newelement.setAttribute("class", "flex items-center mt-px text-zenith");
-            newelement.setAttribute("target", "_blank");
-            newelement.setAttribute("rel", "noopener noreferrer");
-            newelement.setAttribute("style", "cursor: pointer;float: right;margin-top: -50px;");
-            newelement.innerHTML = '<span>PDF Version</span><span class="block w-16 p-2 ml-4 text-dawn"><svg fill="none" stroke="currentColor" viewBox="0 0 12 12" aria-hidden="true" class="flex-none mt-2 stroke-current"><path d="M10.976 1.193A.314.314 0 0010.687 1H6.312a.313.313 0 000 .625h3.62L5.467 6.091a.313.313 0 00.443.442l4.466-4.466v3.62a.313.313 0 00.625 0V1.313a.328.328 0 00-.024-.119z"></path><path d="M3.5 1v.625H2.25a.625.625 0 00-.625.625v7.5c0 .345.28.625.625.625h7.5c.345 0 .625-.28.625-.625V8.5H11v1.875c0 .345-.28.625-.625.625h-8.75A.625.625 0 011 10.375v-8.75C1 1.28 1.28 1 1.625 1H3.5z"></path></svg></span>';
-
-            //append the new element to the second child of the element with id "interviews"
-            secondchild.appendChild(newelement);
-        
-
-        console.log("D")
-        //append blogger1 as a child of class="flex flex-col" after 1 second
-        
-            //get the element with id "blogpage"
-            var blogger1 = document.getElementById("blogger1");
-            //get the second element with id "flex flex-col"
-            var flexflexcol = document.getElementsByClassName("flex flex-col");
-            //get the second element with id "flex flex-col"
-            var flexflexcol2 = flexflexcol[1];
-            //append blogger1 as a child of flexflexcol2
-            flexflexcol2.prepend(blogger1);
-
-            
-            console.log("Appended blogger1 to flex flex-col");
-       
-
-        //set onclick event of every <a> tag to ReadPost()
-        //wait for the page to load
-        // window.onload = function () {
-        //     console.log("WINDOW LOADED")
-            //get all <a> tags
-                //wait 5 seconds before calling the next line
-                
-                    console.log("TIMEOUT FINISHED, RUNNIG CODE")
-                    //get all <a> tags
-                    var a = document.getElementsByTagName("a");
-                    console.log(a)
-                    //loop through all <a> tags
-                    for (var i = 0; i < a.length; i++) {
-                        //if "Read Post" in the innerHTML of the <a> tag
-                        if (a[i].innerHTML.includes("Read Post")) {
-                            //set the onclick event of the <a> tag to ReadPost()
-                            a[i].setAttribute("onclick", "ReadPost()");
-                        //set onclick event of every <a> tag to ReadPost()
-                        //remove _blank of every <a> tag
-                        a[i].target = "";
-                        //make pointer hand appear on hover of every <a> tag
-                        a[i].style.cursor = "pointer";
-                        //<a href="#" class="arrow left"></a>
-                        a[i].onclick = function() {
-                            ReadPost(this);
-                        };
-                        //console log ("Set onclick event of " + a[i] + " to ReadPost()")
-                        console.log("Set onclick event of " + a[i] + " to ReadPost(this)")
-                    }
-                    }
-                    //set display of mainpage to block after 0.1 seconds
-                    setTimeout(function () {
-                        //get the element with id "mainpage"
-                        var mainpage = document.getElementById("mainpage");
-                        //set the display of mainpage to block
-                        mainpage.style.display = "block";
-                        document.body.style.display = "block";
-                    }, 1);
+        var a = document.getElementsByTagName("a");
+        for (var i = 0; i < a.length; i++) {
+            if (a[i].innerHTML.includes("Read Post")) {
+                a[i].setAttribute("onclick", "ReadPost()");
+            a[i].target = "";
+            a[i].style.cursor = "pointer";
+            a[i].onclick = function() {
+                ReadPost(this);
+            };
+        }
+        }
+        setTimeout(function () {
+            var mainpage = document.getElementById("mainpage");
+            mainpage.style.display = "block";
+            document.body.style.display = "block";
+        }, 1);
          }
          catch (err) {
-            //run again
-            console.log("ERROR: " + err)
-            //try again after 0.1 seconds
             setTimeout(function() {
             on_page_load();
             }, 1);
@@ -708,7 +534,6 @@
     }
 
     on_page_load();
-    //set entire page to display none
     document.body.style.display = "none";
     
     </script>

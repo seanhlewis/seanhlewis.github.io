@@ -337,6 +337,7 @@
         }
 
         function HidePost() {
+            blog_opened = false;
             blogparent = document.getElementById("blogparent");
             blogparent.style.display = "none";
             blogpage = document.getElementById("blogpage");
@@ -375,7 +376,7 @@
             blogpage.style.right = "-200%";
             blogpage.style.opacity = "0";
             mainpage.style.right = "0%";
-            blog_opened = false;
+            
 
         }
 

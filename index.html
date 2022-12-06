@@ -337,6 +337,7 @@
         }
 
         function HidePost() {
+            if (blog_opened) {
             blog_opened = false;
             blogparent = document.getElementById("blogparent");
             blogparent.style.display = "none";
@@ -352,6 +353,7 @@
                 });
                 mainpage.style.display = "block";
                 mainpage.style.opacity = "1";
+                blogpage.style.opacity = "0";
 
                 window.scrollTo(0, prevscroll);
 
@@ -377,7 +379,7 @@
             blogpage.style.opacity = "0";
             mainpage.style.right = "0%";
             
-
+            }
         }
 
         var prevevent = null;

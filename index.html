@@ -490,41 +490,124 @@
             const bottom = element.getBoundingClientRect().bottom;
             //while the element is not on the visible part of the screen
             
-            if (!(bottom > 0 && bottom <= viewportHeight && top >= 0))
-            {
-                //This is a loosey-goosey attempt at manually resizing elements
-                console.log("Subtracting")
-                //subtract 1 from the zoom of document.body
-                blogger1 = document.getElementById("blogger1");
-                blogger2 = blogger1.nextElementSibling;
-                blogger3 = blogger2.nextElementSibling;
-                blogparent = document.getElementById("blogparent");
-                blogparent2 = blogparent.previousElementSibling;
-                //scale = 1 + (curscale * 1.6 / 2 / 100);
-                scale = 1 + (curscale * 1.6 / 4 / 100);
-                blogger1.style.webkitTransform = "translate(" + (-curscale) + "%, " + (curscale * 2/3) + "%) scale(" + scale + ")";
-                blogger2.style.webkitTransform = "translate(" + (-curscale*0.6) + "%, " + (curscale * 0.75) + "%) scale(" + scale + ")";
-                blogger3.style.webkitTransform = "translate(" + (-curscale*0.6) + "%, " + (curscale * 20.2) + "%) scale(" + scale + ")";
-                blogparent2.style.webkitTransform = "translate(" + (curscale*0.2) + "%, " + (curscale * 0.75 * 0.275) + "%) scale(" + scale + ")";
-                blogparent.style.webkitTransform = "translate(" + (curscale*0.2) + "%, " + (curscale * 0.75 * 0.275) + "%) scale(" + scale + ")";
+            // if (!(bottom > 0 && bottom <= viewportHeight && top >= 0))
+            // {
+            //     //This is a loosey-goosey attempt at manually resizing elements
+            //     console.log("Subtracting")
+            //     //subtract 1 from the zoom of document.body
+            //     blogger1 = document.getElementById("blogger1");
+            //     blogger2 = blogger1.nextElementSibling;
+            //     blogger3 = blogger2.nextElementSibling;
+            //     blogparent = document.getElementById("blogparent");
+            //     blogparent2 = blogparent.previousElementSibling;
+            //     //scale = 1 + (curscale * 1.6 / 2 / 100);
+            //     scale = 1 + (curscale * 1.6 / 4 / 100);
+            //     // blogger1.style.webkitTransform = "translate(" + (-curscale) + "%, " + (curscale * 2/3) + "%) scale(" + scale + ")";
+            //     // blogger2.style.webkitTransform = "translate(" + (-curscale*0.6) + "%, " + (curscale * 0.75) + "%) scale(" + scale + ")";
+            //     // blogger3.style.webkitTransform = "translate(" + (-curscale*0.6) + "%, " + (curscale * 20.2) + "%) scale(" + scale + ")";
+            //     // blogparent2.style.webkitTransform = "translate(" + (curscale*0.2) + "%, " + (curscale * 0.75 * 0.275) + "%) scale(" + scale + ")";
+            //     // blogparent.style.webkitTransform = "translate(" + (curscale*0.2) + "%, " + (curscale * 0.75 * 0.275) + "%) scale(" + scale + ")";
                 
-                // blogger1.style.webkitTransform = "translate(" + (-curscale*1.4) + "%, " + (curscale * 2/3) + "%) scale(" + scale + ")";
-                // blogger2.style.webkitTransform = "translate(" + (-curscale) + "%, " + (curscale * 1.05) + "%) scale(" + scale + ")";
-                // blogger3.style.webkitTransform = "translate(" + (-curscale) + "%, " + (curscale * 20.2) + "%) scale(" + scale + ")";
-                // blogparent2.style.webkitTransform = "translate(" + (curscale * 0.5) + "%, " + (curscale * 0.75 * 0.53) + "%) scale(" + scale + ")";
-                // blogparent.style.webkitTransform = "translate(" + (-curscale * 0.2) + "%, " + (curscale * 0.75 * 0.53) + "%) scale(" + scale + ")";
-                //document.body.style.scale = curscale - 0.01 ;
-                curscale = curscale - 0.01;
-                resize_page();
-            }
+            //     // blogger1.style.webkitTransform = "translate(" + (-curscale*1.4) + "%, " + (curscale * 2/3) + "%) scale(" + scale + ")";
+            //     // blogger2.style.webkitTransform = "translate(" + (-curscale) + "%, " + (curscale * 1.05) + "%) scale(" + scale + ")";
+            //     // blogger3.style.webkitTransform = "translate(" + (-curscale) + "%, " + (curscale * 20.2) + "%) scale(" + scale + ")";
+            //     // blogparent2.style.webkitTransform = "translate(" + (curscale * 0.5) + "%, " + (curscale * 0.75 * 0.53) + "%) scale(" + scale + ")";
+            //     // blogparent.style.webkitTransform = "translate(" + (-curscale * 0.2) + "%, " + (curscale * 0.75 * 0.53) + "%) scale(" + scale + ")";
+            //     //document.body.style.scale = curscale - 0.01 ;
+            //     curscale = curscale - 0.01;
+            //     resize_page();
+            // }
             console.log("C")
             done = true
             if (done) {
                 //blogger3.style.webkitTransform = "translate(" + (-curscale) + "%, " + (curscale * 32) + "%) scale(" + scale + ")";
-                blogger3.style.webkitTransform = "translate(" + (-curscale*0.6) + "%, " + (curscale * 25) + "%) scale(" + scale + ")";
+                //blogger3.style.webkitTransform = "translate(" + (-curscale*0.6) + "%, " + (curscale * 25) + "%) scale(" + scale + ")";
             }
         }
         }
+
+        }
+
+        var ratio;
+        var left;
+        var top1;
+        resizeAuto()
+        //set timeout to allow the page to load
+        function resizeAuto() {
+            try {
+                resize()
+            }
+            catch (err) {
+                setTimeout(function () {
+                resizeAuto();
+                }, 1);
+            }
+        }
+
+        // $(window).resize(function () {resize();});
+
+
+        //At 1920x1080, the website is exactly 1.0 zoomed in and does not need to be resized
+        //At 1366x768, the following needs to be done:
+        //The element with class "static flex flex-col justify-between w-full p-24 sm:p-32 md:max-w-496 md:fixed md:h-screen lg:py-88 lg:pl-88 md:pr-72 lg:pr-0" needs to have
+        // scale: 0.8;
+        // justify-content: center;
+        // margin-left: 5%;
+        //The element with class "static p-24 sm:p-32 md:max-w-536 lg:max-w-736 md:absolute md:right-0 lg:py-88 lg:pr-88 md:pl-0" needs to have
+        // scale: 0.8;
+        // margin-right: 5%;
+        // margin-top: -36.8%;
+        //The element with id "blogparent" needs to have
+        // scale: 0.8;
+        // margin-top: -5%;
+        // Since the website is exactly 1.0 zoomed in at 1080p, and we know what settings should be applied at 1366x768, we can calculate these settings and apply them for any resolution
+
+        function resize()
+        {
+            //Use the above information to calculate the correct settings for the current resolution
+            //The following is the formula for calculating the correct settings for the current resolution
+            //Find the screen width and height
+            var width = window.innerWidth;
+            if (width < 1920)
+            {
+            var height = window.innerHeight;
+            console.log("Width: " + width);
+            console.log("Height: " + height);
+            
+            //We know the exact settings at 1366x768, so we can use that as a reference point
+            //Calculate the ratio of the current resolution to 1366x768
+            ratio = width / 1920;
+            //1366 / 1920 = 0.71875
+            //At width=1920, ratio = 1, left margin is 0%, right margin is 0%, top margin is 0%, scale is 1, and the website is exactly 1.0 zoomed in
+            //At width=768, left margin is 5%, right margin is 5%, top margin is -36.8%, scale is 0.8, and the website is 0.8 zoomed in
+
+            console.log("Ratio: " + ratio);
+            //Calculate the correct settings for the current resolution
+            scale = 1.11 * ratio;
+            left = 6.95 * ratio;
+            top1 = -51.2 * ratio;
+            console.log("Scale: " + scale);
+            console.log("Left: " + left);
+            console.log("Top: " + top1);
+            //Apply the correct settings to the elements
+            //set timeout to allow the page to load before resizing
+
+            var class1 = document.getElementsByClassName("static flex flex-col justify-between w-full p-24 sm:p-32 md:max-w-496 md:fixed md:h-screen lg:py-88 lg:pl-88 md:pr-72 lg:pr-0")[0];
+            class1.style.scale = scale;
+            class1.style.marginTop = "-" + left + "%";
+            class1.style.marginLeft = left + "%";
+            var class2 = document.getElementsByClassName("static p-24 sm:p-32 md:max-w-536 lg:max-w-736 md:absolute md:right-0 lg:py-88 lg:pr-88 md:pl-0")[0];
+            class2.style.scale = scale;
+            class2.style.marginTop = top1 + "%";
+            class2.style.marginRight = left + "%";
+            var id1 = document.getElementById("blogparent");
+            id1.style.scale = scale;
+            id1.style.marginTop = "-" + left + "%";
+            }
+
+
+            
+            
 
         }
 
@@ -585,7 +668,7 @@
             var mainpage = document.getElementById("mainpage");
             mainpage.style.display = "block";
             document.body.style.display = "block";
-            resize_page();
+            //resize_page();
         }, 1);
          }
          catch (err) {

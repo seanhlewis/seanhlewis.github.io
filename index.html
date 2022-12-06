@@ -478,6 +478,7 @@
         }
         
         curscale = 1;
+        done = false
         function resize_page() {
             if (window.innerWidth >= 768) {
             var element = document.getElementsByClassName("mt-px")[0];
@@ -491,13 +492,35 @@
             
             if (!(bottom > 0 && bottom <= viewportHeight && top >= 0))
             {
+                //This is a loosey-goosey attempt at manually resizing elements
                 console.log("Subtracting")
                 //subtract 1 from the zoom of document.body
-                document.body.style.scale = curscale - 0.01 ;
+                blogger1 = document.getElementById("blogger1");
+                blogger2 = blogger1.nextElementSibling;
+                blogger3 = blogger2.nextElementSibling;
+                blogparent = document.getElementById("blogparent");
+                blogparent2 = blogparent.previousElementSibling;
+                scale = 1 + (curscale * 1.6 / 2 / 100);
+                // blogger1.style.webkitTransform = "translate(" + (-curscale) + "%, " + (curscale * 2/3) + "%) scale(" + scale + ")";
+                // blogger2.style.webkitTransform = "translate(" + (-curscale*0.6) + "%, " + (curscale * 0.75) + "%) scale(" + scale + ")";
+                // blogger3.style.webkitTransform = "translate(" + (-curscale*0.6) + "%, " + (curscale * 20.2) + "%) scale(" + scale + ")";
+                // blogparent2.style.webkitTransform = "translate(" + (curscale*0.2) + "%, " + (curscale * 0.75 * 0.275) + "%) scale(" + scale + ")";
+                // blogparent.style.webkitTransform = "translate(" + (curscale*0.2) + "%, " + (curscale * 0.75 * 0.275) + "%) scale(" + scale + ")";
+                
+                blogger1.style.webkitTransform = "translate(" + (-curscale*1.4) + "%, " + (curscale * 2/3) + "%) scale(" + scale + ")";
+                blogger2.style.webkitTransform = "translate(" + (-curscale) + "%, " + (curscale * 1.05) + "%) scale(" + scale + ")";
+                blogger3.style.webkitTransform = "translate(" + (-curscale) + "%, " + (curscale * 20.2) + "%) scale(" + scale + ")";
+                blogparent2.style.webkitTransform = "translate(" + (curscale * 0.5) + "%, " + (curscale * 0.75 * 0.53) + "%) scale(" + scale + ")";
+                blogparent.style.webkitTransform = "translate(" + (-curscale * 0.2) + "%, " + (curscale * 0.75 * 0.53) + "%) scale(" + scale + ")";
+                //document.body.style.scale = curscale - 0.01 ;
                 curscale = curscale - 0.01;
                 resize_page();
             }
             console.log("C")
+            done = true
+            if (done) {
+                blogger3.style.webkitTransform = "translate(" + (-curscale) + "%, " + (curscale * 32) + "%) scale(" + scale + ")";
+            }
         }
         }
 

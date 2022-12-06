@@ -152,7 +152,7 @@
                             },
                             { "title": "UTCS Program Assistant", "link": "https://www.cs.utexas.edu/engage/outreach/academies", "platform": "University of Texas at Austin", "hosts": ["Tiffany Buckley"], "date": "2022-06-26", "type": "teach", "featured": false },
                             { "title": "Steam Game Developer", "link": "https://store.steampowered.com/app/2122910/Fishori", "platform": "Fishori", "hosts": ["Godot Engine 3.5"], "date": "2022-12-11", "type": "steam", "featured": false },
-                            { "title": "Mobile Game Developer", "link": "https://play.google.com/store/apps/details?id=com.seanhlewis.rpgwordle", "platform": "RPG Wurdle", "hosts": ["Godot Engine 3.1"], "date": "2022-06-04", "type": "mobile", "featured": false },
+                            { "title": "Mobile Game Developer", "link": "https://rpgwurdle.web.app", "platform": "RPG Wurdle", "hosts": ["Godot Engine 3.1"], "date": "2022-06-04", "type": "mobile", "featured": false },
                             {
                                 "title": "Webmaster",
                                 "link": "https://github.com/seanhlewis/websites",
@@ -465,19 +465,44 @@
         
         }
         
+        curscale = 1;
+        function resize_page() {
+            if (window.innerWidth >= 768) {
+            //get the element with the class "mt-px"
+            var element = document.getElementsByClassName("mt-px")[0];
+            //console.log(element);
+            //console.log("HI")
+            if (element) {
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            const top = element.getBoundingClientRect().top;
+            const bottom = element.getBoundingClientRect().bottom;
+            //while the element is not on the visible part of the screen
+            
+            if (!(bottom > 0 && bottom <= viewportHeight && top >= 0))
+            {
+                console.log("Subtracting")
+                //subtract 1 from the zoom of document.body
+                document.body.style.scale = curscale - 0.01 ;
+                curscale = curscale - 0.01;
+                resize_page();
+            }
+            console.log("C")
+        }
+        }
+
+        }
+
+
         function on_page_load() {
         
         try {
      
         if (window.innerWidth < 768) {
-        var blogger1 = document.getElementById("blogger1");
-        var blogger1parent = blogger1.parentNode;
-        var blogger1parent2 = blogger1parent.childNodes[1];
-        var blogger1parent2child1 = blogger1parent2.childNodes[0];
-        var blogger1parent2child1child1 = blogger1parent2child1.childNodes[0];
-        blogger1parent2child1child1.style.fontSize = "40px";
+        //get class text-2xl font-bold leading-tight lg:text-4xl lg:leading-none text-zenith
+        var sean_name = document.getElementsByClassName("text-2xl font-bold leading-tight lg:text-4xl lg:leading-none text-zenith")[0];
+        //set the font size to 275%
+        sean_name.style.fontSize = "275%";
         }
-        
         var projects = document.getElementById("projects");
         var parent = projects.parentElement;
         var newelement = document.createElement("div");
@@ -489,9 +514,9 @@
         newelement2.setAttribute("style", "position: fixed; display: none;");
         newelement2.appendChild(newelement);
         parent.after(newelement2);
-        
+
         newelement.innerHTML = '<div class="flex flex-col"><div><h1 id="blogtitle" class="text-2xl font-bold leading-tight lg:text-4xl lg:leading-none text-zenith">Delivering Excellent UI/UX Experience</h1><h2 style="margin-bottom: 50px;" id="blogcategory" class="mt-16 sm:text-lg text-[20px] font-semibold leading-tight text-sunrise">Dev Notes - September 13, 2022</h2><div id="blogtext" class="leading-loose"><p class="mt-32">lorem ipsum</p></div><a onclick="HidePost()" class="arrow left" target="" style="cursor: pointer;"></a></div></div>';
-       
+        
         var resume = document.getElementById("resume");
         var secondchild = resume.children[1];
         var newelement = document.createElement("a");
@@ -503,10 +528,11 @@
         newelement.innerHTML = '<span>PDF Version</span><span class="block w-16 p-2 ml-4 text-dawn"><svg fill="none" stroke="currentColor" viewBox="0 0 12 12" aria-hidden="true" class="flex-none mt-2 stroke-current"><path d="M10.976 1.193A.314.314 0 0010.687 1H6.312a.313.313 0 000 .625h3.62L5.467 6.091a.313.313 0 00.443.442l4.466-4.466v3.62a.313.313 0 00.625 0V1.313a.328.328 0 00-.024-.119z"></path><path d="M3.5 1v.625H2.25a.625.625 0 00-.625.625v7.5c0 .345.28.625.625.625h7.5c.345 0 .625-.28.625-.625V8.5H11v1.875c0 .345-.28.625-.625.625h-8.75A.625.625 0 011 10.375v-8.75C1 1.28 1.28 1 1.625 1H3.5z"></path></svg></span>';
 
         secondchild.appendChild(newelement);
-    
+
         var blogger1 = document.getElementById("blogger1");
         var flexflexcol = document.getElementsByClassName("flex flex-col");
         var flexflexcol2 = flexflexcol[1];
+
         flexflexcol2.prepend(blogger1);
 
         var a = document.getElementsByTagName("a");
@@ -524,6 +550,7 @@
             var mainpage = document.getElementById("mainpage");
             mainpage.style.display = "block";
             document.body.style.display = "block";
+            resize_page();
         }, 1);
          }
          catch (err) {

@@ -535,7 +535,11 @@
         //set timeout to allow the page to load
         function resizeAuto() {
             try {
+                //if pagewidth > 768, then resize
+                if (window.innerWidth >= 768)
+                {
                 resize()
+                }
             }
             catch (err) {
                 setTimeout(function () {

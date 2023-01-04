@@ -571,48 +571,59 @@
             //Use the above information to calculate the correct settings for the current resolution
             //The following is the formula for calculating the correct settings for the current resolution
             //Find the screen width and height
-            var width = window.innerWidth;
-            if (width < 1920)
-            {
-            var height = window.innerHeight;
-            console.log("Width: " + width);
-            console.log("Height: " + height);
+            // var width = window.innerWidth;
+            // if (width < 1920)
+            // {
+            // var height = window.innerHeight;
+            // console.log("Width: " + width);
+            // console.log("Height: " + height);
             
-            //We know the exact settings at 1366x768, so we can use that as a reference point
-            //Calculate the ratio of the current resolution to 1366x768
-            ratio = width / 1920;
-            //1366 / 1920 = 0.71875
-            //At width=1920, ratio = 1, left margin is 0%, right margin is 0%, top margin is 0%, scale is 1, and the website is exactly 1.0 zoomed in
-            //At width=768, left margin is 5%, right margin is 5%, top margin is -36.8%, scale is 0.8, and the website is 0.8 zoomed in
+            // //We know the exact settings at 1366x768, so we can use that as a reference point
+            // //Calculate the ratio of the current resolution to 1366x768
+            // ratio = width / 1920;
+            // //1366 / 1920 = 0.71875
+            // //At width=1920, ratio = 1, left margin is 0%, right margin is 0%, top margin is 0%, scale is 1, and the website is exactly 1.0 zoomed in
+            // //At width=768, left margin is 5%, right margin is 5%, top margin is -36.8%, scale is 0.8, and the website is 0.8 zoomed in
 
-            console.log("Ratio: " + ratio);
-            //Calculate the correct settings for the current resolution
-            scale = 1.11 * ratio;
-            left = 6.95 * ratio;
-            top1 = -51.2 * ratio;
-            console.log("Scale: " + scale);
-            console.log("Left: " + left);
-            console.log("Top: " + top1);
-            //Apply the correct settings to the elements
-            //set timeout to allow the page to load before resizing
+            // console.log("Ratio: " + ratio);
+            // //Calculate the correct settings for the current resolution
+            // scale = 1.11 * ratio;
+            // left = 6.95 * ratio;
+            // top1 = -51.2 * ratio;
+            // console.log("Scale: " + scale);
+            // console.log("Left: " + left);
+            // console.log("Top: " + top1);
+            // //Apply the correct settings to the elements
+            // //set timeout to allow the page to load before resizing
 
-            var class1 = document.getElementsByClassName("static flex flex-col justify-between w-full p-24 sm:p-32 md:max-w-496 md:fixed md:h-screen lg:py-88 lg:pl-88 md:pr-72 lg:pr-0")[0];
-            class1.style.scale = scale;
-            class1.style.marginTop = "-" + left + "%";
-            class1.style.marginLeft = left + "%";
-            var class2 = document.getElementsByClassName("static p-24 sm:p-32 md:max-w-536 lg:max-w-736 md:absolute md:right-0 lg:py-88 lg:pr-88 md:pl-0")[0];
-            class2.style.scale = scale;
-            class2.style.marginTop = top1 + "%";
-            class2.style.marginRight = left + "%";
-            var id1 = document.getElementById("blogparent");
-            id1.style.scale = scale;
-            id1.style.marginTop = "-" + left + "%";
-            }
+            // var class1 = document.getElementsByClassName("static flex flex-col justify-between w-full p-24 sm:p-32 md:max-w-496 md:fixed md:h-screen lg:py-88 lg:pl-88 md:pr-72 lg:pr-0")[0];
+            // class1.style.scale = scale;
+            // class1.style.marginTop = "-" + left + "%";
+            // class1.style.marginLeft = left + "%";
+            // var class2 = document.getElementsByClassName("static p-24 sm:p-32 md:max-w-536 lg:max-w-736 md:absolute md:right-0 lg:py-88 lg:pr-88 md:pl-0")[0];
+            // class2.style.scale = scale;
+            // class2.style.marginTop = top1 + "%";
+            // class2.style.marginRight = left + "%";
+            // var id1 = document.getElementById("blogparent");
+            // id1.style.scale = scale;
+            // id1.style.marginTop = "-" + left + "%";
+            // }
 
-
-            
-            
-
+          
+		
+			//SMALL DISPLAY
+			//console log the window size
+			origWidth = window.innerWidth;
+			origHeight = window.innerHeight;
+			console.log("Window size: " + window.innerWidth + "x" + window.innerHeight);
+			window.innerWidth = 1920;
+			window.innerHeight = 1080;
+			//console log the new window size
+			console.log("Window size: " + window.innerWidth + "x" + window.innerHeight);                                     
+			//set zoom of the body to 0.75
+			console.log(document.getElementsByTagName("body")[0]);
+			document.getElementsByTagName("body")[0].style.zoom = "0.77";
+			
         }
 
 
